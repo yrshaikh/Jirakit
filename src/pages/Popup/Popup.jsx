@@ -1,27 +1,45 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
+import React, { Component } from 'react';
 import './Popup.css';
+import Header from './components/header/Header';
+import Reset from './components/reset/Reset';
+import Settings from './components/settings/Settings';
+import Search from './components/search/Search';
+import { clearAll, get, set } from './services/localStorageService';
+import { getJiraUrlKey } from './services/localStorageKeys';
 
-const Popup = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Popup/Popup.js</code> and save to reload..
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+class Popup extends Component {
+  constructor() {
+    super();
+    this.state = {
+      jiraUrl: get(getJiraUrlKey()),
+    };
+    this.settingsUpdatedCallback = this.settingsUpdatedCallback.bind(this);
+    this.resetCallback = this.resetCallback.bind(this);
+  }
+  render() {
+    const app = this.state.jiraUrl ? (
+      <Search jiraUrl={this.state.jiraUrl} />
+    ) : (
+      <Settings
+        jiraUrl={this.state.jiraUrl}
+        onSaveCallback={this.settingsUpdatedCallback}
+      />
+    );
+    return (
+      <div className="App">
+        <Header />
+        {app}
+        <Reset onResetCallback={this.resetCallback} />
+      </div>
+    );
+  }
+  settingsUpdatedCallback(updatedJiraUrl) {
+    this.setState({ jiraUrl: updatedJiraUrl });
+    set(getJiraUrlKey(), updatedJiraUrl);
+  }
+  resetCallback() {
+    this.setState({ jiraUrl: '' });
+  }
+}
 
 export default Popup;

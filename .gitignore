@@ -19,3 +19,4 @@
 # secrets
 secrets.*.js
 jirakit/node_modules/*
+.idea/*
