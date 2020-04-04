@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.css';
 
 class Search extends React.Component {
   constructor(props) {
@@ -11,10 +12,10 @@ class Search extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h2>Quick Search</h2>
+      <div className="Search">
+        <b>Quick Search</b>
         <div>
-          <span>{this.props.jiraUrl}browse/</span>
+          <span>{this.props.jiraUrl}/browse/</span>
           <input
             type="text"
             placeholder={'JIRA ID : ABC-123'}
@@ -31,7 +32,7 @@ class Search extends React.Component {
   handleChange(e) {
     const jiraId = e.target.value;
     this.setState({ jiraId: jiraId });
-    this.setState({ jiraLandingUrl: this.props.jiraUrl + 'browse/' + jiraId });
+    this.setState({ jiraLandingUrl: this.props.jiraUrl + '/browse/' + jiraId });
   }
 }
 

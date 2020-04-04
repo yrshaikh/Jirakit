@@ -1,7 +1,13 @@
 import React from 'react';
+import './Header.css';
+
 class Header extends React.Component {
   render() {
-    return <h3>JIRA KIT</h3>;
+    return (
+      <div className="header">
+        <div className="logo">JIRA KIT</div>
+      </div>
+    );
   }
 }
 
