@@ -1,19 +1,40 @@
 @font-face {
-  font-family: 'ProximaNova-Regular';
-  src: url('./fonts/proximanova-regular-webfont.eot');
-  src: local('?'),
-    url('./fonts/proximanova-regular-webfont.woff') format('woff'),
-    url('./fonts/proximanova-regular-webfont.ttf') format('truetype');
+  font-family: 'Graphik-Bold';
+  src: url('./fonts/Graphik-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Graphik-Light';
+  src: url('./fonts/Graphik-Light.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ProximaNova-Bold';
-  src: url('./fonts/proximanova-semibold-webfont.eot');
-  src: local('?'),
-    url('./fonts/proximanova-semibold-webfont.woff') format('woff'),
-    url('./fonts/proximanova-semibold-webfont.ttf') format('truetype');
+  font-family: 'Graphik-Medium';
+  src: url('./fonts/Graphik-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik-Regular';
+  src: url('./fonts/Graphik-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik-Semibold';
+  src: url('./fonts/Graphik-Semibold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik-Super';
+  src: url('./fonts/Graphik-Super.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,17 +46,40 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1B2326;
+  background: #f5efe6;
 }
 
-input, body {
-  font-family: 'ProximaNova-Regular', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
-  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+input,
+body {
+  font-family: 'Graphik-Regular', 'ProximaNova-Regular', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 b {
-  font-family: 'ProximaNova-Bold', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
-  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Graphik-Semibold', 'ProximaNova-Bold', 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+input[type='text'] {
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.4rem;
+  line-height: 1.5;
+}
+
+.btn {
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 0.4rem;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  white-space: normal;
+  background-color: #2b80cf;
+  color: #fff;
 }
 
 code {

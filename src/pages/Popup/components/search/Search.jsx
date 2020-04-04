@@ -13,19 +13,22 @@ class Search extends React.Component {
   render() {
     return (
       <div className="Search">
-        <b>Quick Search</b>
-        <div>
-          <span>{this.props.jiraUrl}/browse/</span>
+        <b className="Search__Header">Quick Launch</b>
+        <div className="Search__Body">
+          <span className="Search__Body__Label">
+            {this.props.jiraUrl}/browse/
+          </span>
           <input
             type="text"
-            placeholder={'JIRA ID : ABC-123'}
+            className="Search__Body__Input"
+            placeholder={'JIRA-ID'}
             value={this.state.jiraId}
             onChange={this.handleChange}
           />
+          <a className="btn Search__Body__Button" target={'_blank'} href={this.state.jiraLandingUrl}>
+            Open
+          </a>
         </div>
-        <a target={'_blank'} href={this.state.jiraLandingUrl}>
-          Open
-        </a>
       </div>
     );
   }

@@ -1,4 +1,26 @@
 .Search {
-  background: #EBF0F2;
+  background: #fff;
   padding: 10px;
+}
+
+.Search__Header {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.Search__Body {
+  display: inline-block;
+}
+
+.Search__Body__Label {
+  color: #777;
+}
+.Search__Body__Input {
+  margin-left: 5px;
+  width: 80px;
+}
+.Search__Body__Button{
+  margin-left: 5px;
+  width: 50px;
 }

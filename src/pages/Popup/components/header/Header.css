@@ -1,9 +1,12 @@
 .header {
-  background: #3b72a8;
-  color: #fff;
+  background: #fff;
+  color: #01363d;
+  line-height: 62px;
+  border-bottom: 2px solid #e7e4df;
+  padding: 0 15px;
+  font-family: "Graphik-Super";
 }
 
 .header .logo {
   font-size: 18px;
-  padding: 12px 10px;
 }
