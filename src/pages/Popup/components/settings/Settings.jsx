@@ -1,4 +1,5 @@
 import React from 'react';
+import './Settings.css'
 
 class Settings extends React.Component {
   constructor(props) {
@@ -14,11 +15,11 @@ class Settings extends React.Component {
     this.setState({ jiraUrl: e.target.value });
   }
   handleSave() {
-    this.props.onSaveCallback(this.state.jiraUrl);
+    this.props.settingsUpdatedEvent(this.state.jiraUrl);
   }
   render() {
     return (
-      <div>
+      <div className="Settings">
         <h3>Settings</h3>
         <p>
           orem ipsum dolor sit amet, consectetur adipiscing elit. Ut

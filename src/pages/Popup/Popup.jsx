@@ -10,35 +10,51 @@ import { getJiraUrlKey } from './services/localStorageKeys';
 class Popup extends Component {
   constructor() {
     super();
-    this.state = {
-      jiraUrl: get(getJiraUrlKey()),
+    this.pageTypes = {
+      HOME: 'home',
+      SETTINGS: 'settings',
     };
-    this.settingsUpdatedCallback = this.settingsUpdatedCallback.bind(this);
-    this.resetCallback = this.resetCallback.bind(this);
+    const jiraUrl = get(getJiraUrlKey());
+    this.state = {
+      jiraUrl: jiraUrl,
+      pageType: jiraUrl ? this.pageTypes.HOME : this.pageTypes.SETTINGS,
+    };
+    this.settingsUpdatedEventCallback = this.settingsUpdatedEventCallback.bind(this);
+    this.settingsClickedEventCallback = this.settingsClickedEventCallback.bind(this);
+    this.resetEventCallback = this.resetEventCallback.bind(this);
   }
   render() {
-    const app = this.state.jiraUrl ? (
-      <Search jiraUrl={this.state.jiraUrl} />
-    ) : (
-      <Settings
-        jiraUrl={this.state.jiraUrl}
-        onSaveCallback={this.settingsUpdatedCallback}
-      />
-    );
+    const app =
+      this.state.pageType === this.pageTypes.HOME ? (
+        <Search jiraUrl={this.state.jiraUrl} />
+      ) : (
+        <Settings
+          jiraUrl={this.state.jiraUrl}
+          settingsUpdatedEvent={this.settingsUpdatedEventCallback}
+        />
+      );
     return (
       <div className="App">
-        <Header />
+        <Reset onResetEvent={this.resetEventCallback} />
+        <Header
+          adsasd={'323'}
+          asdasdasasdads={1}
+          settingsClickedEvent={this.settingsClickedEventCallback}
+        />
         {app}
-        <Reset onResetCallback={this.resetCallback} />
       </div>
     );
   }
-  settingsUpdatedCallback(updatedJiraUrl) {
+  settingsClickedEventCallback() {
+    this.setState({ pageType: this.pageTypes.SETTINGS });
+  }
+  settingsUpdatedEventCallback(updatedJiraUrl) {
     this.setState({ jiraUrl: updatedJiraUrl });
     set(getJiraUrlKey(), updatedJiraUrl);
   }
-  resetCallback() {
+  resetEventCallback() {
     this.setState({ jiraUrl: '' });
+    this.setState({ pageType: this.pageTypes.SETTINGS });
   }
 }
 

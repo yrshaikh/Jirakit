@@ -12,7 +12,7 @@ class Reset extends React.Component {
 
   handleResetAll() {
     clearAll();
-    this.props.onResetCallback();
+    this.props.onResetEvent();
   }
 }
 

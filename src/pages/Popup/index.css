@@ -86,3 +86,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.color-black {
+  color: #01363d;
+}
+
+.color-gray {
+  color: #778c90;
+}

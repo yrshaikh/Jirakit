@@ -13,7 +13,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className="Search">
-        <b className="Search__Header">Quick Launch</b>
+        <b className="Search__Header">Quick Launch:</b>
         <div className="Search__Body">
           <span className="Search__Body__Label">
             {this.props.jiraUrl}/browse/

@@ -1,12 +1,19 @@
-.header {
+.Header {
   background: #fff;
-  color: #01363d;
   line-height: 62px;
+  height: 62px;
   border-bottom: 2px solid #e7e4df;
   padding: 0 15px;
-  font-family: "Graphik-Super";
 }
 
-.header .logo {
+.Header__Logo {
   font-size: 18px;
+  float: left;
+  font-family: 'Graphik-Semibold';
+}
+
+.Header__Settings {
+  float: right;
+  text-decoration: underline;
+  cursor: pointer;
 }
