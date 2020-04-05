@@ -12,8 +12,8 @@ This boilerplate is heavily inspired by and adapted from [https://github.com/sam
 
 ## Installing and Running
 
-1. Run `npm install` to install the dependencies.
-2. Run `npm start`
+1. Run `yarn install` to install the dependencies.
+2. Run `yarn start`
 3. Load your extension on Chrome following:
    1. Access `chrome://extensions/`
    2. Check `Developer mode`

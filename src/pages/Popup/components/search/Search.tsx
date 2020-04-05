@@ -1,8 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import './Search.css';
 
-class Search extends React.Component {
-  constructor(props) {
+interface Props {
+  jiraUrl: string;
+}
+
+interface State {
+  jiraId: string;
+  jiraLandingUrl: string;
+}
+
+class Search extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       jiraId: '',
@@ -25,14 +34,18 @@ class Search extends React.Component {
             value={this.state.jiraId}
             onChange={this.handleChange}
           />
-          <a className="btn Search__Body__Button" target={'_blank'} href={this.state.jiraLandingUrl}>
+          <a
+            className="btn Search__Body__Button"
+            target={'_blank'}
+            href={this.state.jiraLandingUrl}
+          >
             Open
           </a>
         </div>
       </div>
     );
   }
-  handleChange(e) {
+  handleChange(e: any) {
     const jiraId = e.target.value;
     this.setState({ jiraId: jiraId });
     this.setState({ jiraLandingUrl: this.props.jiraUrl + '/browse/' + jiraId });

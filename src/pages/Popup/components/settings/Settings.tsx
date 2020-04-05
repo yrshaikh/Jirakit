@@ -1,8 +1,17 @@
-import React from 'react';
-import './Settings.css'
+import * as React from 'react';
+import './Settings.css';
 
-class Settings extends React.Component {
-  constructor(props) {
+interface Props {
+  jiraUrl: string;
+  settingsUpdatedEvent: any;
+}
+
+interface State {
+  jiraUrl: string;
+}
+
+class Settings extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       jiraUrl: props.jiraUrl,
@@ -11,7 +20,7 @@ class Settings extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
-  handleChange(e) {
+  handleChange(e: any) {
     this.setState({ jiraUrl: e.target.value });
   }
   handleSave() {
@@ -29,7 +38,7 @@ class Settings extends React.Component {
         </p>
         <div>
           <label>Please enter your JIRA URL here</label>
-          <br/>
+          <br />
           <input
             type="text"
             placeholder={'https://jira.example.com'}

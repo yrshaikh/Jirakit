@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import './Popup.css';
 import Header from './components/header/Header';
 import Reset from './components/reset/Reset';
@@ -57,5 +57,53 @@ class Popup extends Component {
     this.setState({ pageType: this.pageTypes.SETTINGS });
   }
 }
+*/
 
+import * as React from 'react';
+
+import './Popup.css';
+
+import Reset from './components/reset/Reset';
+import Settings from './components/settings/Settings';
+import Search from './components/search/Search';
+import { get, set } from './services/localStorageService';
+import { getJiraUrlKey } from './services/localStorageKeys';
+import Header from './components/header/Header';
+
+class Popup extends React.Component<any, any> {
+  public constructor(props: any) {
+    super(props);
+    const jiraUrl = get(getJiraUrlKey());
+    this.state = {
+      jiraUrl: jiraUrl
+    };
+    this.settingsUpdatedEventCallback = this.settingsUpdatedEventCallback.bind(this);
+    this.settingsClickedEventCallback = this.settingsClickedEventCallback.bind(this);
+    this.resetEventCallback = this.resetEventCallback.bind(this);
+  }
+  public render(): JSX.Element {
+    return <div  className="App">
+      <h1>Hello</h1>
+      <Reset onResetEvent={this.resetEventCallback} />
+      <Header settingsClickedEvent={this.settingsClickedEventCallback} />
+      <Search jiraUrl={this.state.jiraUrl} />
+
+      <Settings
+        jiraUrl={this.state.jiraUrl}
+        settingsUpdatedEvent={this.settingsUpdatedEventCallback}
+      />
+    </div>;
+  }
+  settingsClickedEventCallback() {
+    //this.setState({ pageType: this.pageTypes.SETTINGS });
+  }
+  settingsUpdatedEventCallback(updatedJiraUrl: string) {
+    this.setState({ jiraUrl: updatedJiraUrl });
+    set(getJiraUrlKey(), updatedJiraUrl);
+  }
+  resetEventCallback() {
+    this.setState({ jiraUrl: '' });
+    //this.setState({ pageType: this.pageTypes.SETTINGS });
+  }
+}
 export default Popup;

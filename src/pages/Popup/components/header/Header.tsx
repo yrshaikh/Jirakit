@@ -1,8 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import './Header.css';
 
-class Header extends React.Component {
-  constructor(props) {
+interface Props {
+  settingsClickedEvent: any
+}
+
+class Header extends React.Component<Props, {}> {
+  constructor(props: Props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }

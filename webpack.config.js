@@ -63,6 +63,11 @@ var options = {
         exclude: /node_modules/,
       },
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'awesome-typescript-loader',
+      },
+      {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
@@ -73,7 +78,7 @@ var options = {
     alias: alias,
     extensions: fileExtensions
       .map((extension) => '.' + extension)
-      .concat(['.jsx', '.js', '.css']),
+      .concat(['.ts', '.tsx', '.jsx', '.js', '.css']),
   },
   plugins: [
     new webpack.ProgressPlugin(),
