@@ -4,17 +4,14 @@ import * as React from 'react';
 
 interface Props {
   jiraUrl: string;
-  settingsUpdatedEvent: any;
 }
-
-
 
 interface State {
   jiraUrl: string;
 }
 
 class Settings extends React.Component<Props, State> {
-  constructor(props: Props) {
+  public constructor(props: Props) {
     super(props);
     this.state = {
       jiraUrl: props.jiraUrl,
@@ -23,21 +20,19 @@ class Settings extends React.Component<Props, State> {
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
-  handleChange(e: any) {
+
+  private handleChange(e: any): void {
     this.setState({ jiraUrl: e.target.value });
   }
-  handleSave() {
-    this.props.settingsUpdatedEvent(this.state.jiraUrl);
+
+  private handleSave(): void {
+    alert("save button pressed");
   }
-  render() {
+
+  public render(): JSX.Element {
     return (
       <div className="Settings">
         <h3>Settings</h3>
-        <p>
-          orem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque gravida augue, id pretium dolor
-          lobortis vitae. Nulla semper, nisi ut elementum elementum, purus turpis hendrerit ligula, ut accumsan orci
-          nunc id dui
-        </p>
         <div>
           <label>Please enter your JIRA URL here</label>
           <br />
@@ -47,7 +42,7 @@ class Settings extends React.Component<Props, State> {
             value={this.state.jiraUrl}
             onChange={this.handleChange}
           />
-          <button onClick={this.handleSave}>Save</button>
+          <span className="btn" onClick={this.handleSave}>Save</span>
         </div>
       </div>
     );

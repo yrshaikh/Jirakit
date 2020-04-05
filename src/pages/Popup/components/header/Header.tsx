@@ -1,31 +1,53 @@
-import * as React from 'react';
 import './Header.css';
+import * as React from 'react';
+import HeaderClickEvents from '../../types/HeaderClickEvents';
+import PageType from '../../types/PageType';
 
 interface Props {
-  settingsClickedEvent: any
+  pageType: PageType;
+  menuClicked(menu: HeaderClickEvents): any;
 }
 
 class Header extends React.Component<Props, {}> {
-  constructor(props: Props) {
+  public constructor(props: Props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.onMenuClick = this.onMenuClick.bind(this);
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <div className="Header">
         <div className="Header__Logo color-black">JIRA KIT</div>
-        <a
-          className="Header__Settings color-gray"
-          onClick={this.props.settingsClickedEvent}
-        >
-          settings
-        </a>
+        {this.renderMenu()}
       </div>
     );
   }
-  handleClick() {
-    this.props.settingsClickedEvent();
+
+  private renderMenu(): JSX.Element {
+    if (this.props.pageType === PageType.App) {
+      return (
+        <a
+          className="Header__Settings color-gray"
+          onClick={(): void => this.onMenuClick(HeaderClickEvents.Settings)}
+        >
+          settings
+        </a>
+      );
+    } else {
+      return (
+        <a
+          className="Header__Settings color-gray"
+          onClick={(): void => this.onMenuClick(HeaderClickEvents.BackToHome)}
+        >
+          back to app
+        </a>
+      );
+    }
+  }
+
+  private onMenuClick(event: HeaderClickEvents): any {
+    console.log('onMenuClick', event);
+    this.props.menuClicked(event);
   }
 }
 
