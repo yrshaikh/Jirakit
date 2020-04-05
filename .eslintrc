@@ -1,6 +1,28 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "globals": {
     "chrome": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-member-accessibility": "error",
+    "lines-between-class-members": ["error", "always"],
+    "sort-imports": "error",
+    "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
+    "linebreak-style": ["error", "unix"],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-function-return-type": "error"
   }
 }

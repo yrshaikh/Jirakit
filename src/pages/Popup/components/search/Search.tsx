@@ -11,7 +11,7 @@ interface State {
 }
 
 class Search extends React.Component<Props, State> {
-  constructor(props: Props) {
+  public constructor(props: Props) {
     super(props);
     this.state = {
       jiraId: '',
@@ -19,7 +19,7 @@ class Search extends React.Component<Props, State> {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  render() {
+  public render() {
     return (
       <div className="Search">
         <b className="Search__Header">Quick Launch:</b>
@@ -45,7 +45,7 @@ class Search extends React.Component<Props, State> {
       </div>
     );
   }
-  handleChange(e: any) {
+  private handleChange(e: any) {
     const jiraId = e.target.value;
     this.setState({ jiraId: jiraId });
     this.setState({ jiraLandingUrl: this.props.jiraUrl + '/browse/' + jiraId });

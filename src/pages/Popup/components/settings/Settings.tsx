@@ -1,10 +1,13 @@
-import * as React from 'react';
 import './Settings.css';
+
+import * as React from 'react';
 
 interface Props {
   jiraUrl: string;
   settingsUpdatedEvent: any;
 }
+
+
 
 interface State {
   jiraUrl: string;
@@ -31,10 +34,9 @@ class Settings extends React.Component<Props, State> {
       <div className="Settings">
         <h3>Settings</h3>
         <p>
-          orem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-          pellentesque gravida augue, id pretium dolor lobortis vitae. Nulla
-          semper, nisi ut elementum elementum, purus turpis hendrerit ligula, ut
-          accumsan orci nunc id dui
+          orem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque gravida augue, id pretium dolor
+          lobortis vitae. Nulla semper, nisi ut elementum elementum, purus turpis hendrerit ligula, ut accumsan orci
+          nunc id dui
         </p>
         <div>
           <label>Please enter your JIRA URL here</label>
