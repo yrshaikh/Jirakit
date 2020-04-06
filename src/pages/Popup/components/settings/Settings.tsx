@@ -1,7 +1,7 @@
 import './Settings.css';
 
 import * as React from 'react';
-import JiraService from '../../services/jiraService';
+import JiraService from '../../../common/jiraService';
 
 interface Props {
   jiraUrl: string;
@@ -13,6 +13,7 @@ interface State {
 }
 
 class Settings extends React.Component<Props, State> {
+  // @ts-ignore
   private jiraService: JiraService;
 
   public constructor(props: Props) {
@@ -31,8 +32,9 @@ class Settings extends React.Component<Props, State> {
     this.setState({ jiraUrl: e.target.value });
   }
 
-  private handleSave(): void {
-    this.jiraService.setJiraUrl(this.state.jiraUrl);
+  private async handleSave(): Promise<void> {
+    const writeResponse = await this.jiraService.setJiraUrl(this.state.jiraUrl);
+    console.log(writeResponse);
     this.props.onUpdateCallback(this.state.jiraUrl);
   }
 

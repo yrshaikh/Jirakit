@@ -3,12 +3,13 @@ import './Popup.css';
 import * as React from 'react';
 import ClickEvents from './types/ClickEvents';
 import Header from './components/header/Header';
-import JiraService from './services/jiraService';
+import JiraService from '../common/jiraService';
 import PageType from './types/PageType';
 import Search from './components/search/Search';
 import Settings from './components/settings/Settings';
 
 interface State {
+  isReady: boolean;
   jiraUrl: string;
   pageType: PageType;
 }
@@ -17,20 +18,28 @@ class Popup extends React.Component<{}, State> {
   public constructor(props: any) {
     super(props);
     this.jiraService = new JiraService();
-    const pageType: PageType = this.jiraService.getJiraUrl()
-      ? PageType.App
-      : PageType.Settings;
+
     this.state = {
-      jiraUrl: this.jiraService.getJiraUrl(),
-      pageType,
+      isReady: false,
+      jiraUrl: '',
+      pageType: PageType.App,
     };
+
     this.menuClickCallback = this.menuClickCallback.bind(this);
     this.settingsUpdatedCallback = this.settingsUpdatedCallback.bind(this);
+  }
+
+  public async componentDidMount() {
+    const response = await this.jiraService.getJiraUrl();
+    console.log(response);
+    this.setState({ isReady: true });
+    this.setState({ jiraUrl: response });
   }
 
   private jiraService: JiraService;
 
   public render(): JSX.Element {
+    if (!this.state.isReady) return <div />;
     const page: JSX.Element = this.getPage(this.state.pageType);
     return (
       <div className="App">

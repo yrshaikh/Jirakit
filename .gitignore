@@ -20,3 +20,12 @@
 secrets.*.js
 jirakit/node_modules/*
 .idea/*
+build/*
+build/contentScript.bundle.js
+build/manifest.json
+build/popup.bundle.js
+build/popup.html
+build/contentScript.bundle.js
+build/manifest.json
+build/popup.bundle.js
+build/popup.html

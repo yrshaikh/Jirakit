@@ -18,6 +18,7 @@
     "@types/store": "^2.0.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
+    "chrome-storage-promise": "^0.1.0",
     "generator-react-component": "^0.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
