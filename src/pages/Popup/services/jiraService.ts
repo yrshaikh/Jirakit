@@ -1,15 +1,25 @@
-import LocalStorageService from './localStorageService';
+import LocalStorageService from "./localStorageService";
 
 class JiraService {
+
   private localStorageService: LocalStorageService;
 
-  public constructor() {
+  private jiraUrlKey = "JIRAKIT:URL";
+
+  public constructor () {
     this.localStorageService = new LocalStorageService();
   }
 
-  public getJiraUrl(): string {
-    const jiraUrl = this.localStorageService.get('JIRAKIT:URL');
-    return jiraUrl;
+  public getJiraUrl (): string {
+    return this.localStorageService.get(this.jiraUrlKey);
+  }
+
+  public setJiraUrl (url: string): void {
+    this.localStorageService.set(this.jiraUrlKey, url);
+  }
+
+  public reset (): void {
+    this.localStorageService.clearAll();
   }
 }
 

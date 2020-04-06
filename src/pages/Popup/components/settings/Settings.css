@@ -1,3 +1,27 @@
 .Settings {
   background: #fff;
+  padding: 10px;
+}
+
+.Settings__Header {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.Settings__Body {
+  display: block;
+  padding-top: 5px;
+}
+
+.Settings__Body__Info {
+  margin-bottom: 5px;
+}
+
+.Settings__Body__Input {
+  margin-right: 5px;
+  width: 300px;
+}
+
+.Settings__Body__Button {
 }

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import './Search.css';
+import * as React from 'react';
 
 interface Props {
   jiraUrl: string;
@@ -19,33 +19,45 @@ class Search extends React.Component<Props, State> {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  public render() {
+
+  public render(): JSX.Element {
     return (
       <div className="Search">
         <b className="Search__Header">Quick Launch:</b>
-        <div className="Search__Body">
-          <span className="Search__Body__Label">
-            {this.props.jiraUrl}/browse/
-          </span>
-          <input
-            type="text"
-            className="Search__Body__Input"
-            placeholder={'JIRA-ID'}
-            value={this.state.jiraId}
-            onChange={this.handleChange}
-          />
-          <a
-            className="btn Search__Body__Button"
-            target={'_blank'}
-            href={this.state.jiraLandingUrl}
-          >
-            Open
-          </a>
-        </div>
+        {this.props.jiraUrl ? this.renderSearchBody() : this.renderError()}
       </div>
     );
   }
-  private handleChange(e: any) {
+
+  private renderError(): JSX.Element {
+    return <div className="Search__Error">Base JIRA url is not set yet. Please go to settings and set one first.</div>;
+  }
+
+  private renderSearchBody(): JSX.Element {
+    return (
+      <div className="Search__Body">
+        <span className="Search__Body__Label">
+          {this.props.jiraUrl}/browse/
+        </span>
+        <input
+          type="text"
+          className="Search__Body__Input"
+          placeholder={'JIRA-ID'}
+          value={this.state.jiraId}
+          onChange={this.handleChange}
+          autoFocus
+        />
+        <a
+          className="btn Search__Body__Button"
+          target={'_blank'}
+          href={this.state.jiraLandingUrl}
+        >
+          Open
+        </a>
+      </div>
+    );
+  }
+  private handleChange(e: any): void {
     const jiraId = e.target.value;
     this.setState({ jiraId: jiraId });
     this.setState({ jiraLandingUrl: this.props.jiraUrl + '/browse/' + jiraId });

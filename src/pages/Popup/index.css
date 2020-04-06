@@ -63,11 +63,16 @@ b {
 }
 
 input[type='text'] {
-  padding: 8px;
+  padding: 10px;
   background-color: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 0.4rem;
   line-height: 1.5;
+  outline: none;
+}
+
+input[type='text']:focus{
+  border: 1px solid #2b80cf;
 }
 
 .btn {
@@ -80,6 +85,13 @@ input[type='text'] {
   white-space: normal;
   background-color: #2b80cf;
   color: #fff;
+  width: 50px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2b80cfde;
 }
 
 code {

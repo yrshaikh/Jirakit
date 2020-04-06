@@ -9,6 +9,13 @@
   padding-bottom: 5px;
 }
 
+.Search__Error {
+  color: #d4442e;
+  background: #e7e4df;
+  padding: 20px;
+  border-radius: 8px;
+}
+
 .Search__Body {
   display: inline-block;
 }
