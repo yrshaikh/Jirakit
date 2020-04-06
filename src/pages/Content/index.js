@@ -1,4 +1,6 @@
-import { printLine } from './modules/print';
+import Test from './modules/Test';
 
-console.log('Content script entry');
-console.log('current href', location.href);
+// eslint-disable-next-line no-undef
+const url = location.href;
+console.log('yolo content script');
+console.log('current href', new Test().doSomething(url));
