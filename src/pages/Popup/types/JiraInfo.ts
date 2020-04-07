@@ -1,4 +1,4 @@
-class JiraType {
+class JiraInfo {
   public jiraUrl: string;
 
   public other: string;
@@ -9,4 +9,4 @@ class JiraType {
   }
 }
 
-export default JiraType;
+export default JiraInfo;

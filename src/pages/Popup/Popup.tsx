@@ -7,6 +7,7 @@ import JiraService from '../common/jiraService';
 import PageType from './types/PageType';
 import Search from './components/search/Search';
 import Settings from './components/settings/Settings';
+import JiraInfo from './types/JiraInfo';
 
 interface State {
   isReady: boolean;
@@ -30,10 +31,10 @@ class Popup extends React.Component<{}, State> {
   }
 
   public async componentDidMount() {
-    const response = await this.jiraService.getJiraInfo();
+    const response: JiraInfo = await this.jiraService.getJiraInfo();
     console.log(response);
     this.setState({ isReady: true });
-    this.setState({ jiraUrl: response });
+    this.setState({ jiraUrl: response.jiraUrl });
   }
 
   private jiraService: JiraService;

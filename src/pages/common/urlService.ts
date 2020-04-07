@@ -1,13 +1,18 @@
 class UrlService {
-  private url: string;
+  public haveSameHostNames(url1: string, url2: string): boolean {
+    const host1 = this.getHostName(url1);
+    const host2 = this.getHostName(url2);
 
-  public constructor(url: string) {
-    console.log("url received", url);
-    this.url = url;
+    return host1 === host2;
   }
 
-  public isValid(): boolean {
-    return this.url.indexOf('google.com') !== -1;
+  private getHostName(url: string): string {
+    try {
+      const u = new URL(url);
+      return u.host;
+    } catch (e) {
+      return '';
+    }
   }
 }
 

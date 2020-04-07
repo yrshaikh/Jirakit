@@ -57,6 +57,7 @@ class Search extends React.Component<Props, State> {
       </div>
     );
   }
+
   private handleChange(e: any): void {
     const jiraId = e.target.value;
     this.setState({ jiraId: jiraId });
