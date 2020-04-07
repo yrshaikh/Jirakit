@@ -30,7 +30,7 @@ class Popup extends React.Component<{}, State> {
   }
 
   public async componentDidMount() {
-    const response = await this.jiraService.getJiraUrl();
+    const response = await this.jiraService.getJiraInfo();
     console.log(response);
     this.setState({ isReady: true });
     this.setState({ jiraUrl: response });

@@ -8,9 +8,9 @@ class JiraService {
     this.storageService = new StorageService();
   }
 
-  public async getJiraUrl(): Promise<string> {
+  public async getJiraInfo(): Promise<string> {
     return await this.storageService.get().then(function (response: JiraType) {
-      console.log('getJiraUrl', response);
+      console.log('getJiraInfo', response);
       return response ? response.jiraUrl : '';
     });
   }

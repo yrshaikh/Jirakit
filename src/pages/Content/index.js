@@ -1,9 +1,19 @@
 import JiraService from '../common/jiraService';
-import Test from './modules/Test';
+import UrlService from '../common/urlService';
 
 // eslint-disable-next-line no-undef
-const url = location.href;
+const currentUrl = location.href;
+
 const jiraService = new JiraService();
-const a = jiraService.getJiraUrl();
-console.log('yolo content script', a);
-console.log('current href', new Test().doSomething(url));
+const urlService = new UrlService(currentUrl);
+
+async function init() {
+  const jiraInfo = await jiraService.getJiraInfo();
+  console.log('jiraInfo', jiraInfo);
+  const isValid = urlService.isValid();
+  console.log('isvalid', isValid);
+}
+
+const doNothing = init().then(function (response) {
+  console.log('init executed');
+});
