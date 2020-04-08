@@ -106,3 +106,23 @@ code {
 .color-gray {
   color: #778c90;
 }
+
+.Section {
+  padding: 10px;
+}
+
+.Section__Header {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #aba8a3;
+  padding: 0.5rem;
+  text-align: left;
+}

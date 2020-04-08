@@ -1,11 +1,16 @@
+import UrlInfo from './UrlInfo';
+
 class JiraInfo {
-  public jiraUrl: string;
+  public url: string;
 
   public other: string;
 
-  public constructor(jiraUrl: string, other: string) {
-    this.jiraUrl = jiraUrl;
+  public recentlyViewed: Array<UrlInfo>;
+
+  public constructor(url: string, other: string) {
+    this.url = url;
     this.other = other;
+    this.recentlyViewed = [];
   }
 }
 

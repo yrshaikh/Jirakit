@@ -1,6 +1,9 @@
 import JiraInfo from '../Popup/types/JiraInfo';
 import StorageService from './storageService';
+import UrlInfo from '../Popup/types/UrlInfo';
 import UrlService from './urlService';
+// @ts-ignore
+import _ from 'lodash';
 
 class JiraService {
   private storageService: StorageService;
@@ -12,17 +15,14 @@ class JiraService {
     this.urlService = new UrlService();
   }
 
-  public async getJiraInfo(): Promise<JiraInfo> {
-    return await this.storageService.get().then(function (response: JiraInfo) {
-      console.log('getJiraInfo', response);
-      if (!response) return new JiraInfo('', '');
-      return response;
-    });
+  public async getJiraBaseUrl(): Promise<string> {
+    const jiraKitAppInfo = await this.getJiraKitAppInfo();
+    return jiraKitAppInfo.url;
   }
 
   public async setJiraUrl(url: string): Promise<any> {
-    const jiraType: JiraInfo = new JiraInfo(url, 'testetes');
-    return await this.storageService.set(jiraType);
+    const jiraInfo: JiraInfo = new JiraInfo(url, 'Jetbrains');
+    return await this.storageService.set(jiraInfo);
   }
 
   public async reset(): Promise<any> {
@@ -30,8 +30,30 @@ class JiraService {
   }
 
   public async isValidJiraUrl(url: string): Promise<boolean> {
-    const jiraInfo = await this.getJiraInfo();
-    return this.urlService.haveSameHostNames(jiraInfo.jiraUrl, url);
+    const jiraInfo = await this.getJiraKitAppInfo();
+    return this.urlService.haveSameHostNames(jiraInfo.url, url)
+      && url.indexOf('/browse/') !== -1;
+  }
+
+  public async addUrl(url: UrlInfo): Promise<any> {
+    const jiraInfo = await this.getJiraKitAppInfo();
+
+    const alreadyExist = _.find(jiraInfo.recentlyViewed, function(o: any) {
+      return o.id === url.id;
+    });
+
+    if (alreadyExist) return;
+
+    jiraInfo.recentlyViewed.push(url);
+    return await this.storageService.set(jiraInfo);
+  }
+
+  public async getJiraKitAppInfo(): Promise<JiraInfo> {
+    return await this.storageService.get().then(function(response: JiraInfo) {
+      console.log('getJiraKitAppInfo', response);
+      if (!response) return new JiraInfo('', '');
+      return response;
+    });
   }
 }
 

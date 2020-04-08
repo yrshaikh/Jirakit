@@ -5,14 +5,16 @@ import ClickEvents from './types/ClickEvents';
 import Header from './components/header/Header';
 import JiraService from '../common/jiraService';
 import PageType from './types/PageType';
+import RecentlyViewed from './components/recentlyViewed/RecentlyViewed';
 import Search from './components/search/Search';
 import Settings from './components/settings/Settings';
-import JiraInfo from './types/JiraInfo';
+import UrlInfo from './types/UrlInfo';
 
 interface State {
   isReady: boolean;
   jiraUrl: string;
   pageType: PageType;
+  recentlyViewed: Array<UrlInfo>;
 }
 
 class Popup extends React.Component<{}, State> {
@@ -23,6 +25,7 @@ class Popup extends React.Component<{}, State> {
     this.state = {
       isReady: false,
       jiraUrl: '',
+      recentlyViewed: [],
       pageType: PageType.App,
     };
 
@@ -31,10 +34,11 @@ class Popup extends React.Component<{}, State> {
   }
 
   public async componentDidMount() {
-    const response: JiraInfo = await this.jiraService.getJiraInfo();
-    console.log(response);
+    const appInfo = await this.jiraService.getJiraKitAppInfo();
+    console.log(appInfo);
     this.setState({ isReady: true });
-    this.setState({ jiraUrl: response.jiraUrl });
+    this.setState({ jiraUrl: appInfo.url });
+    this.setState({ recentlyViewed: appInfo.recentlyViewed });
   }
 
   private jiraService: JiraService;
@@ -56,7 +60,12 @@ class Popup extends React.Component<{}, State> {
   private getPage(pageType: PageType): JSX.Element {
     switch (pageType) {
       case PageType.App:
-        return <Search jiraUrl={this.state.jiraUrl} />;
+        return (
+          <>
+            <Search jiraUrl={this.state.jiraUrl} />
+            <RecentlyViewed urls={this.state.recentlyViewed} />
+          </>
+        );
 
       case PageType.Settings:
         return (
@@ -83,7 +92,7 @@ class Popup extends React.Component<{}, State> {
     this.setState({ pageType: PageType.App });
   }
 
-  private resetApp(): void {
+  private async resetApp(): Promise<void> {
     const response: boolean = confirm(
       'Do you really want to reset the app? Once you reset the app, there is no going back. Please be certain..'
     );
@@ -92,7 +101,7 @@ class Popup extends React.Component<{}, State> {
       return;
     }
 
-    this.jiraService.reset();
+    await this.jiraService.reset();
     this.setState({ jiraUrl: '' });
     this.setState({ pageType: PageType.Settings });
   }

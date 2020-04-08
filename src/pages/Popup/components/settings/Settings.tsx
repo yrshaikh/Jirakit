@@ -40,8 +40,8 @@ class Settings extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <div className="Settings">
-        <b className="Settings__Header">Settings:</b>
+      <div className="Settings Section">
+        <b className="Section__Header">Settings:</b>
         <div className="Settings__Body">
           <div className="Settings__Body__Info">
             <label className="color-gray">

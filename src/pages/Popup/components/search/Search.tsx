@@ -22,8 +22,8 @@ class Search extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <div className="Search">
-        <b className="Search__Header">Quick Launch:</b>
+      <div className="Search Section">
+        <b className="Section__Header">Quick Launch:</b>
         {this.props.jiraUrl ? this.renderSearchBody() : this.renderError()}
       </div>
     );
